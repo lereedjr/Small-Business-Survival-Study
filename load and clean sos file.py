@@ -133,10 +133,12 @@ sos_base_file['principalzipcode'] = np.vectorize(fivezip)(sos_base_file['princip
 #sos_base_file['entityformdate'].dt.year
 
 '''
-Filter the data set to 2011-2016
+Filter the data set to 2015-2016
+Less years due to timing and other data sets
+Too many recs for google api for example
 I do this as a string of or. I could also use the year I created.
 '''
-sos_base_file = sos_base_file[sos_base_file['entityformdate'].str.contains("2016|2015|2014|2013|2012|2011")]
+sos_base_file = sos_base_file[sos_base_file['entityformdate'].str.contains("2016|2015")]
 
 print(sos_base_file.shape)
 
