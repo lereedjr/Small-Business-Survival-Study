@@ -15,11 +15,11 @@ For data exploration I used Tableau and Excel. I used Excel when I first pulled 
 I tinkered with Jupyter but found the Spyder IDE was easier to work with. I also used Git Desktop and the Atom text editor for a small portion of my work.
 
 # Data Insights
+My base data set came from the Colorado government website https://data.colorado.gov/. The Colorado Secretary of State maintains a list of all Colorado businesses. This list contains over one million businesses. The data set goes back to the 1800's. The data set contains information like address, entity type and the date the entity formed. The data is not time variant. this means older businesses have had more time to go insolvent. I decided to limit my data to only entities formed in 2015 and 2016. This seemed like enough time to neither limit nor exaggerate aging impacts. After limiting the years I removed superfluous columns and combined the eight entity status codes into a binary variable. The only issue I ran into during this process related to my inexperience with Python. I attempted to loop through the 1M record data set to update values. The code never finished. After using the Python apply function the data updates took seconds.
 
-Not time variant
-Picked two years of data to limit aging impacts
-Older years will not be the same as newer
-Primary data set from Colorado data government SOS
+I also acquired data from the IRS and Bureau of Labor and Statistics.
+
+
 Reviewed data on the BLS and IRS
 Tried using Google places
 Combined entity statuses as I thought was correct
