@@ -17,41 +17,52 @@ I tinkered with Jupyter but found the Spyder IDE was easier to work with. I also
 # Data Insights
 My base data set came from the Colorado government website https://data.colorado.gov/. The Colorado Secretary of State maintains a list of all Colorado businesses. This list contains over one million businesses. The data set goes back to the 1800's. The data set contains information like address, entity type and the date the entity formed. The data is not time variant. this means older businesses have had more time to go insolvent. I decided to limit my data to only entities formed in 2015 and 2016. This seemed like enough time to neither limit nor exaggerate aging impacts. After limiting the years I removed superfluous columns and combined the eight entity status codes into a binary variable. The only issue I ran into during this process related to my inexperience with Python. I attempted to loop through the 1M record data set to update values. The code never finished. After using the Python apply function the data updates took seconds.
 
-I also acquired data from the IRS and Bureau of Labor and Statistics.
+I also acquired data from the IRS and Bureau of Labor and Statistics. The process of researching the data was tedious and time consuming. Much of the data is old. Much of the data did not appear relevant to my question. The websites were difficult to navigate also. Once I acquired the IRS and BLS data it was necessary to alter the data. Some of the data was laid out rows wise and it needed to be columns wise. In other places the granularity was not at the zip level. This necessitated averaging the results from the BLS data.
 
+I spent a large amount of time building an program to pull Google API data. The learning experience was great. The program worked also. I ran into two issues that prevented use of the Google data. The first is data sparsity. Google has a location review and data about the type of location. For example, I might be able to find if the location is a liquor store or a bank. both of these data items were rarely populated. It looks like many businesses have homes as locations. This is a possible driver. Regardless I was unable to use the Google data in my model. Also, I was only able to acquire 8k records or so before Google stopped giving me data. This is puzzling as I used a paid account and thought I could use 150k transactions a day.
 
-Reviewed data on the BLS and IRS
-Tried using Google places
-Combined entity statuses as I thought was correct
-Data set not perfectly balanced but pretty close
-State of business origin matters
-Can't find small business without buying
+The Colorado SOS data has a number of different entity statuses. These are listed below. I combined exists and good standing to indicate business survival.
 
-# Images
-logloss and AUC
-test and training
-most predictive
+Administratively Dissolved
+Converted
+Delinquent
+Dissolved (Term Expired)
+Exists
+Good Standing
+Judicially Dissolved
+Noncompliant
+Registered Agent Resigned
+Revoked
+Voluntarily Dissolved
+Withdrawn
+
+I also researched several paid sources for business data. The prices were not exorbitant but I did not want to spend more than a few dollars. I decided to run with what I could get for free.
+
 
 # Implementation Details and Analysis
+In the linked Tableau Tab
+
+Data set not perfectly balanced but pretty close
+State of business origin matters
 acquired data from SOS manually
   contemplated an automated process
 researched other data sources on BLS and IRS
 Looked for zip level data
 
-
+# Model insights
 did not know Python
 discuss models and model variations
 NN
 GLM
 GBM
 Auto ML
-
-
 AUC results
 logloss results
 Models only performed OK
-Ran into trouble with Google places
 
+# Images
+logloss and AUC
+variable importance
 
 # Conclusions
 Don't start a business in Dec or Feb
