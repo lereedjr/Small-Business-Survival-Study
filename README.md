@@ -43,9 +43,8 @@ For my exploratory data analysis I used Tableau in combination with Excel. Use t
 
 # Model insights
 
-I used a variety of model types. For my own edification I tried trees, gradient boosted trees, neural networks and generalized linear models. I experimented with a large number of hyperparameters. I used grid search to expedite the model building process as well as H2O's model ensemble builder. I spent a large amount of time trying to find ways to materially improve my models. Model results were very close between most models. The first round of tuning created a large amount of differences and only small differences after that. I used area under the curve and log loss as my performance metrics. My best models had an AUC value of almost .67. The best models had a log loss value of around .64. I found my training data did much better than my validation data. So overfitting was an issue.
+I used a variety of model types. For my own edification I tried trees, gradient boosted trees, neural networks and generalized linear models. I experimented with a large number of hyperparameters. I used grid search to expedite the model building process as well as H2O's model ensemble builder. I spent a large amount of time trying to find ways to materially improve my models. Model results were very close between most models. The first round of tuning created a large amount of differences and only small differences after that. I used area under the curve and log loss as my performance metrics. My best models had an AUC value of almost .67. The best models had a log loss value of around .64. I found my training data did much better than my validation data. So overfitting was an issue. You can see an image of the AUC curves in this link  <a href="hhttps://github.com/sautherd1973/python/blob/master/auc.gi" rel="nofollow"> AUC.</a> One can see a subset of my model results in this link .
 
-![test] (https://github.com/sautherd1973/python/blob/master/auc.bmp"Logo Title Text 1")
 
 
 discuss models and model variations
