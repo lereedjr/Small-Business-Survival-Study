@@ -38,19 +38,14 @@ Withdrawn
 
 I also researched several paid sources for business data. The prices were not exorbitant but I did not want to spend more than a few dollars. I decided to run with what I could get for free.
 
-
-# Implementation Details and Analysis
-In the linked Tableau Tab
-
-Data set not perfectly balanced but pretty close
-State of business origin matters
-acquired data from SOS manually
-  contemplated an automated process
-researched other data sources on BLS and IRS
-Looked for zip level data
+# EDA
+For my exploratory data analysis I used Tableau in combination with Excel. Use this link to view my EDA. <a href="https://github.com/sautherd1973/python/blob/master/EDA.pdf" rel="nofollow"> EDA</a> There are several thing that stood out to me during the exploratory data analysis. First, the data is fairly well balanced. The number of businesses in existence is about 60% of the total population. This removed the need to perform SMOTE or another algorithm to handle class imbalances. Next, the only city with more failed then successful businesses is Aurora. This might indicate certain regions have issue with early business termination. IRS filing data did not have an impact on entity status. This was surprising. I expected businesses to flourish in higher income areas. Business failure was marginally higher in areas of high unemployment. The month an entity forms does appear to have a large impact on entity status. The month of February has a high failure rate. All other months have a higher success rate. There are a large number of businesses forming in Colorado with out of state addresses. It did not appear being an out of state entity had an impact on business success however. I last took a look at BLS data around residential to business address ratios in the zip. This also appears to not be a driver of business success.
 
 # Model insights
-did not know Python
+
+I used a variety of model types. For my own edification I tried trees, gradient boosted trees, neural networks and generalized linear models. I experimented with a large number of hyperparameters. I used grid search to expedite the model building process as well as an H2O model ensemble builder. I spent a large amount of time trying to find ways to materially improve my models. Model results were very close between most models. The first round of tuning created a large amount of differences and only small differences after that. 
+
+
 discuss models and model variations
 NN
 GLM
@@ -59,6 +54,8 @@ Auto ML
 AUC results
 logloss results
 Models only performed OK
+chi square analysis
+
 
 # Images
 logloss and AUC
