@@ -59,4 +59,4 @@ Some business types are more likely to fail also. Foreign Corporations are more 
 
 # Link to Video
 
-![alt text](https://github.com/sautherd1973/Small-Business-Survival-Study/blob/master/import1.png "Variable Importance")
+![alt text](https://github.com/sautherd1973/Small-Business-Survival-Study/blob/master/balance.png "Variable Importance")
