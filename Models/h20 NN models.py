@@ -20,14 +20,14 @@ print('start')
 set working directory
 '''
 os.chdir("C:\\Users\\dave\\Desktop\\Class\\Data")
-#os.listdir() #for QA
+# os.listdir() #for QA
 
 '''
 get h2o up and running
 unsure parameters; need to test
 '''
-h2o.init(max_mem_size = "4G")             #specify max number of bytes. uses all cores by default.
-h2o.remove_all()                          #clean slate, in case cluster was already running
+h2o.init(max_mem_size="4G")  # specify max number of bytes. uses all cores by default.
+h2o.remove_all()  # clean slate, in case cluster was already running
 
 '''
 load the models I'd like to try
@@ -69,23 +69,25 @@ test.describe()
 set up the indep and dep variables
 the second input on the array is where the aaray stops
 '''
-sos_df_X = sos_df.col_names[2:10]+sos_df.col_names[12:22]+sos_df.col_names[23:25]#+sos_df.col_names[26:]
-sos_df_y = sos_df.col_names[10] 
+sos_df_X = sos_df.col_names[2:10]+sos_df.col_names[12:22] + \
+    sos_df.col_names[23:25]  # +sos_df.col_names[26:]
+sos_df_y = sos_df.col_names[10]
 
 '''
 NN
 '''
-sos_nn_v1 = H2ODeepLearningEstimator(model_id="sos_nn_v1", epochs=100, 
-                                     variable_importances=True,#this can be slow
-                                     hidden=[10,10,10,10,10])
+sos_nn_v1 = H2ODeepLearningEstimator(model_id="sos_nn_v1", epochs=100,
+                                     variable_importances=True,  # this can be slow
+                                     hidden=[10, 10, 10, 10, 10])
 
-sos_nn_v1.train(sos_df_X, sos_df_y, training_frame = train, validation_frame = valid)
+sos_nn_v1.train(sos_df_X, sos_df_y, training_frame=train,
+                validation_frame=valid)
 '''
 output
 '''
 sos_nn_v1.score_history()
 sos_nn_v1.varimp()
-sos_nn_v1.logloss #http://wiki.fast.ai/index.php/Log_Loss
+sos_nn_v1.logloss  # http://wiki.fast.ai/index.php/Log_Loss
 
 
 '''
@@ -94,36 +96,15 @@ loop through activation
 models_act = []
 m_names_act = []
 
-for i,method in enumerate(["Tanh","Maxout","Rectifier","RectifierWithDropout"]):
-    #print(i)
-    #print(method)
+for i, method in enumerate(["Tanh", "Maxout", "Rectifier", "RectifierWithDropout"]):
+    # print(i)
+    # print(method)
     models_act.append(H2ODeepLearningEstimator(model_id="sos_nn_"+method,
-                                               activation=method, hidden=[10,10,10,10,10], epochs=100))
-    models_act[i].train(sos_df_X, sos_df_y, training_frame = train, validation_frame = valid)
-    m_names_act.append("DL"+ method + "Activation")
+                                               activation=method, hidden=[10, 10, 10, 10, 10], epochs=100))
+    models_act[i].train(sos_df_X, sos_df_y,
+                        training_frame=train, validation_frame=valid)
+    m_names_act.append("DL" + method + "Activation")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#h2o.cluster().shutdown()
-print('end') #just for my sanity
+# h2o.cluster().shutdown()
+print('end')  # just for my sanity

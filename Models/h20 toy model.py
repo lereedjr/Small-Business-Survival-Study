@@ -11,14 +11,14 @@ https://github.com/h2oai/h2o-tutorials/blob/master/tutorials/gbm-randomforest/GB
 
 # # Introduction
 # This tutorial shows how H2O [Gradient Boosted Models](https://en.wikipedia.org/wiki/Gradient_boosting) and [Random Forest](https://en.wikipedia.org/wiki/Random_forest) models can be used to do supervised classification and regression. This tutorial covers usage of H2O from Python. An R version of this tutorial will be available as well in a separate document. This file is available in plain R, R markdown, regular markdown, plain Python and iPython Notebook formats. More examples and explanations can be found in our [H2O GBM booklet](http://h2o.ai/resources/) and on our [H2O Github Repository](http://github.com/h2oai/h2o-3/).
-# 
+#
 
 # ## Task: Predicting forest cover type from cartographic variables only
-# 
+#
 # The actual forest cover type for a given observation (30 x 30 meter cell) was determined from the US Forest Service (USFS). We are using the UC Irvine Covertype dataset.
 
 # ### H2O Python Module
-# 
+#
 # Load the H2O Python module.
 
 # In[ ]:
@@ -30,7 +30,7 @@ import os
 set working directory
 '''
 os.chdir("C:\\Users\\dave\\Desktop\\Class\\Data")
-#os.listdir() #for QA
+# os.listdir() #for QA
 
 
 # ### Start H2O
@@ -38,10 +38,11 @@ os.chdir("C:\\Users\\dave\\Desktop\\Class\\Data")
 
 # In[ ]:
 
-h2o.init(max_mem_size = "2G")             #specify max number of bytes. uses all cores by default.
-h2o.remove_all()                          #clean slate, in case cluster was already running
+# specify max number of bytes. uses all cores by default.
+h2o.init(max_mem_size="2G")
+h2o.remove_all()  # clean slate, in case cluster was already running
 
-#GUI http://127.0.0.1:54321/flow/index.html
+# GUI http://127.0.0.1:54321/flow/index.html
 
 
 # To learn more about the h2o package itself, we can use Python's builtin help() function.
@@ -67,9 +68,10 @@ split data set
 train, valid, test = covtype_df.split_frame([0.6, 0.2], seed=1234)
 
 
-#Prepare predictors and response columns
-covtype_X = covtype_df.col_names[:-1]     #last column is Cover_Type, our desired response variable 
-covtype_y = covtype_df.col_names[-1] 
+# Prepare predictors and response columns
+# last column is Cover_Type, our desired response variable
+covtype_X = covtype_df.col_names[:-1]
+covtype_y = covtype_df.col_names[-1]
 
 '''
 build model
@@ -91,7 +93,7 @@ train the model
 '''
 
 rf_v1.train(covtype_X, covtype_y, training_frame=train, validation_frame=valid)
-#this ran pretty quickly
+# this ran pretty quickly
 
 '''
 '''
@@ -103,7 +105,6 @@ hit ratio
 rf_v1.hit_ratio_table(valid=True)
 
 
-
 '''
 boosted tree
 '''
@@ -113,7 +114,8 @@ gbm_v1 = H2OGradientBoostingEstimator(
 )
 
 
-gbm_v1.train(covtype_X, covtype_y, training_frame=train, validation_frame=valid)
+gbm_v1.train(covtype_X, covtype_y, training_frame=train,
+             validation_frame=valid)
 
 gbm_v1.score_history()
 
@@ -130,13 +132,14 @@ gbm_v2 = H2OGradientBoostingEstimator(
     ntrees=20,
     learn_rate=0.2,
     max_depth=10,
-    stopping_tolerance=0.01, #10-fold increase in threshold as defined in rf_v1
+    stopping_tolerance=0.01,  # 10-fold increase in threshold as defined in rf_v1
     stopping_rounds=2,
     score_each_iteration=True,
     model_id="gbm_covType_v2",
     seed=2000000
 )
-gbm_v2.train(covtype_X, covtype_y, training_frame=train, validation_frame=valid)
+gbm_v2.train(covtype_X, covtype_y, training_frame=train,
+             validation_frame=valid)
 
 
 '''
@@ -149,15 +152,16 @@ gbm_v3 = H2OGradientBoostingEstimator(
     sample_rate=0.7,
     col_sample_rate=0.7,
     stopping_rounds=2,
-    stopping_tolerance=0.01, #10-fold increase in threshold as defined in rf_v1
+    stopping_tolerance=0.01,  # 10-fold increase in threshold as defined in rf_v1
     score_each_iteration=True,
     model_id="gbm_covType_v3",
     seed=2000000
 )
-gbm_v3.train(covtype_X, covtype_y, training_frame=train, validation_frame=valid)
+gbm_v3.train(covtype_X, covtype_y, training_frame=train,
+             validation_frame=valid)
 
-#shut it down
-#h2o.shutdown(prompt=False)
+# shut it down
+# h2o.shutdown(prompt=False)
 
 '''
 more tree
@@ -173,17 +177,4 @@ rf_v2 = H2ORandomForestEstimator(
 rf_v2.train(covtype_X, covtype_y, training_frame=train, validation_frame=valid)
 
 
-
 h2o.shutdown(prompt=False)
-
-
-
-
-
-
-
-
-
-
-
-

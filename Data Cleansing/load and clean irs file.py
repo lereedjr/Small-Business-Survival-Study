@@ -22,14 +22,14 @@ load the cleaned usps and sos data
 unsure if I want to automate download
 '''
 file_name = 'sos_usps_file.csv'
-sos_updated_file = pd.read_csv(file_name,parse_dates=True)
+sos_updated_file = pd.read_csv(file_name, parse_dates=True)
 print(sos_updated_file.head())
 
 '''
 data from irs 
 I manually changed the header name
 '''
-irs_file = pd.read_csv("irsfilingloading.csv",parse_dates=True)
+irs_file = pd.read_csv("irsfilingloading.csv", parse_dates=True)
 print(irs_file.head())
 
 '''
@@ -41,9 +41,9 @@ irs_file['principalzipcode'] = irs_file['principalzipcode'].astype(str)
 '''
 merge new data with prior data based on zip
 '''
-sos_updated_file = pd.merge(sos_updated_file,irs_file, how='left', on='principalzipcode')
+sos_updated_file = pd.merge(
+    sos_updated_file, irs_file, how='left', on='principalzipcode')
 print(sos_updated_file.head())
-
 
 
 file_name = 'sos_usps_irs_file.csv'
