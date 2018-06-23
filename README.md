@@ -58,4 +58,4 @@ A business started in Aurora is less likely to succeed. The old adage about loca
 Some business types are more likely to fail also. Foreign Corporations are more likely to succeed as are Foreign Limited Liability Companies. It would be pure speculation on my part to state why.
 
 # Link to Video
-![alt text](https://github.com/sautherd1973/Small-Business-Survival-Study/blob/master/month.png"Month Importance")
+https://www.youtube.com/watch?v=90FYuhiRc70
